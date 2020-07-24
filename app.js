@@ -54,6 +54,10 @@ app.use(indexRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 app.use("/campgrounds",campgroundRoutes);
 
-app.listen(3000, ()=>{
+// app.listen(3000, ()=>{
+// 	console.log("app started");
+// });
+
+app.listen(process.env.PORT, ()=>{
 	console.log("app started");
 });
