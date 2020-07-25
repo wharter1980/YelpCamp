@@ -38,7 +38,7 @@ router.post("/", middleware.isLoggedIn, (req, res)=> {
     //     var lat = data[0].latitude;
     //     var lng = data[0].longitude;
     //     var location = data[0].formattedAddress;
-        var newCamp = { name: name, price: price, image: image, description: description, author: author,location: location, lat: lat, lng: lng}
+        var newCamp = { name: name, price: price, image: image, description: description, author: author}//,location: location, lat: lat, lng: lng}
         Campground.create(newCamp, (err, campground) => {
             if(err)
                 console.log(err);
