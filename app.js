@@ -17,15 +17,14 @@ const express = require("express"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes = require("./routes/index"),
 	seedDB = require("./seed"),
-	dbCred = process.env.mdbURL_PROD,
-	mdbUrl = dbCred
+	dbCred = process.env.mdbURL_Prod
 //seedDB();
 app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(flash());
-mongoose.connect(mdbUrl, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})
+mongoose.connect(dbCred, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})
 .then(() => {
 	console.log("mongodb connected");
 })
@@ -54,10 +53,10 @@ app.use(indexRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 app.use("/campgrounds",campgroundRoutes);
 
-// app.listen(3000, ()=>{
+app.listen(3000, ()=>{
+	console.log("DEV started");
+});
+
+// app.listen(process.env.PORT, ()=>{
 // 	console.log("app started");
 // });
-
-app.listen(process.env.PORT, ()=>{
-	console.log("app started");
-});
