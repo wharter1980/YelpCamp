@@ -24,7 +24,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(flash());
-mongoose.connect("mongodb+srv://wharter1980:Erinjean12*@cluster0-sxrqj.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})
+mongoose.connect(dbCred, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})
 .then(() => {
 	console.log("mongodb connected");
 })
@@ -53,10 +53,10 @@ app.use(indexRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 app.use("/campgrounds",campgroundRoutes);
 
-app.listen(3000, ()=>{
-	console.log("DEV started");
-});
-
-// app.listen(process.env.PORT, ()=>{
-// 	console.log("app started");
+// app.listen(3000, ()=>{
+// 	console.log("DEV started");
 // });
+
+app.listen(process.env.PORT || 3000, ()=>{
+	console.log("app started");
+});
