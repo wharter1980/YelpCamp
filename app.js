@@ -16,15 +16,15 @@ const express = require("express"),
 	commentRoutes = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes = require("./routes/index"),
-	seedDB = require("./seed"),
-	dbCred = process.env.mdbURL_Prod
+	seedDB = require("./seed")
+	//dbCred = process.env.mdbURL_Prod
 //seedDB();
 app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(flash());
-mongoose.connect(dbCred, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})
+mongoose.connect('mongodb+srv://wharter1980:Erinjean12*@cluster0-sxrqj.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})
 .then(() => {
 	console.log("mongodb connected");
 })
