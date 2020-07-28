@@ -16,7 +16,7 @@ const express = require("express"),
 	commentRoutes = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes = require("./routes/index"),
-	seedDB = require("./seed")
+	seedDB = require("./seed"),
 	dbCred = process.env['mdbURL_PROD']
 //seedDB();
 app.use(methodOverride("_method"));
