@@ -1,0 +1,34 @@
+<%- include("../partials/header") %>
+
+<h1 style="text-align: center">Edit <%= currentUser.firstName %> <%= currentUser.lastName %>'s profile</h1>
+    <div style="width: 30%; margin: 25px auto;">
+        <form action="/users/<%= currentUser._id %>?_method=PUT" method="post">
+            <div class="form-group">
+                <label for="username">UserName</label>
+                <input class="form-control" type="text" name="user[username]" value="<%= currentUser.username %>">
+            </div>
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input class="form-control" type="text" name="user[firstName]" value="<%= currentUser.firstName %>">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input class="form-control" type="text" name="user[lastName]" value="<%= currentUser.lastName %>">
+            </div>
+            <div class="form-group">
+                <label for="avatar">Profile Picture</label>
+                <input class="form-control" type="text" name="user[avatar]" value="<%= currentUser.avatar %>">
+            </div>
+            <div class="form-group">
+				<label for="email">Email</label>
+				<input type="email" name="user[email]" value="<%= currentUser.email %>" autofocus class="form-control">
+			</div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="user[adminCode]" placeholder="Admin Code">
+            </div>
+            <button>Submit</button>
+        </form>
+        <a href="/users/<%= currentUser._id %>">Back to profile</a>
+    </div>
+
+<%- include("../partials/footer") %>

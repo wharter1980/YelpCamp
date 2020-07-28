@@ -13,7 +13,7 @@ middelwareObj.checkCampgroundOwnership = function checkCampgroundOwnership(req, 
                     req.flash("error", "Item not found.");
                     return res.redirect("back");
                 }
-                if(campground.author.id.equals(req.user._id)){
+                if(campground.author.id.equals(req.user._id) || req.user.isAdmin){
                     next();
                 }else{
                     req.flash("error", "You don't have permissions for that");
@@ -38,7 +38,7 @@ middelwareObj.checkCommentOwnership = function checkCommentOwnership(req, res, n
                     req.flash("error", "Item not found.");
                     return res.redirect("back");
                 }
-                if(comment.author.id.equals(req.user._id)){
+                if(comment.author.id.equals(req.user._id) || req.user.isAdmin){
                     next();
                 }else{
                     req.flash("error", "You don't have permission to do that");
