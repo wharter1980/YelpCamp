@@ -1,6 +1,4 @@
-require('dotenv').config(); //see slide for setting up in heroku, also google dev console and whitelist heroku url
-//hide/encrypt all passwords and keys --https://www.youtube.com/watch?v=B4OuCjQLJ9k 19:50 explains that GIT can hide this file type.
-//do a git status to see if .env shows up
+require('dotenv').config();
 
 const express = require("express"),
 	app = express(),
@@ -52,10 +50,6 @@ app.use((req, res, next)=>{
 app.use(indexRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 app.use("/campgrounds",campgroundRoutes);
-
-// app.listen(3000, ()=>{
-// 	console.log("DEV started");
-// });
 
 app.listen(process.env.PORT || 3000, ()=>{
 	console.log("app started");

@@ -195,15 +195,26 @@ router.post('/reset/:token', function(req, res) {
         res.render("users/edit");
     });
 
-    router.put("/users/:id", (req, res) => { //check if is user
-        User.findByIdAndUpdate(req.params.id, req.body.user, (err, user) => {
-            if(err){
-                console.log(err);
-                req.flash("error", "Unable to update");
-                res.redirect("/users/" + user._id);
-            }
-            req.flash("success", "Update successful");
-            res.redirect("/users/" + user._id);
+    router.put("/users/:id", (req, res) => { 
+        var username = req.body.user.username;
+        var firstName = req.body.user.firstName;
+        var lastName = req.body.user.lastName;
+        var avatar = req.body.user.avatar;
+        var email = req.body.user.email;
+        var adminCode = req.body.user.isAdmin;
+        if(req.body.user.adminCode === process.env['SECRETCODE'])
+            isAdmin = true;
+
+        var updateUser = {username: username, firstname: firstName, lastname: lastName, avatar: avatar, isAdmin: isAdmin}   
+        console.log(updateUser);
+        User.findByIdAndUpdate(req.params.id, updateUser, (err, user) => {
+          if(err){
+              console.log(err);
+              req.flash("error", "Unable to update");
+              res.redirect("/users/" + user._id);
+          }
+          req.flash("success", "Update successful");
+          res.redirect("/users/" + user._id);
         });
     });
 
